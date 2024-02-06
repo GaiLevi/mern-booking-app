@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import DatePicker from "react-datepicker";
-import { useSerachContext } from "../../contexts/SearchContext";
+import { useSearchContext } from "../../contexts/SearchContext";
 import { useAppContext } from "../../contexts/AppContext";
 import { useLocation, useNavigate } from "react-router-dom";
 type Props = {
@@ -16,7 +16,7 @@ type GuestInfoFormData = {
 };
 
 const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
-  const search = useSerachContext();
+  const search = useSearchContext();
   const { isLoggedIn } = useAppContext();
   const navigate = useNavigate();
   const location = useLocation();

@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { useSerachContext } from "../contexts/SearchContext";
+import { useSearchContext } from "../contexts/SearchContext";
 import * as apiClient from "../api-client";
 import React, { useState } from "react";
 import SearchResultsCard from "../components/SearchResultsCard";
@@ -10,7 +10,7 @@ import FacilitiesFilter from "../components/FacilitiesFilter";
 import PriceFilter from "../components/PriceFilter";
 
 const Search = () => {
-  const search = useSerachContext();
+  const search = useSearchContext();
   const [page, setPage] = useState<number>(1);
   const [selectedStars, setSelectedStars] = useState<string[]>([]);
   const [selectedHotelTypes, setSelectedHotelTypes] = useState<string[]>([]);

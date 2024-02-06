@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { useSerachContext } from "../contexts/SearchContext";
+import { useSearchContext } from "../contexts/SearchContext";
 import { MdTravelExplore } from "react-icons/md";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 export const SearchBar = () => {
   const navigate = useNavigate();
-  const search = useSerachContext();
+  const search = useSearchContext();
 
   const [destination, setDestinaiton] = useState<string>(search.destination);
   const [checkIn, setCheckIn] = useState<Date>(search.checkIn);
