@@ -26,6 +26,9 @@ const Detail = () => {
           ))}
         </span>
         <h1 className="text-3xl font-bold">{hotel.name}</h1>
+        <h2 className="font-bold">
+          {hotel.city},{hotel.country}
+        </h2>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {hotel.imageUrls.map((image) => (

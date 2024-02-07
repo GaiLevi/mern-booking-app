@@ -15,6 +15,14 @@ export const SearchBar = () => {
   const [adultCount, setAdultCount] = useState<number>(search.adultCount);
   const [childCount, setChildCount] = useState<number>(search.childCount);
 
+  const onClickClear = (event: FormEvent) => {
+    event.preventDefault();
+    setDestinaiton("");
+    setCheckIn(new Date());
+    setCheckOut(new Date());
+    setAdultCount(1);
+    setChildCount(0);
+  };
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     search.saveSearchValues(
@@ -98,7 +106,10 @@ export const SearchBar = () => {
         <button className="w-2/3 bg-blue-600 text-white h-full p-2 font-bold text-xl hover:bg-blue-500">
           Search
         </button>
-        <button className="w-1/3 bg-red-600 text-white h-full p-2 font-bold text-xl hover:bg-red-500">
+        <button
+          className="w-1/3 bg-red-600 text-white h-full p-2 font-bold text-xl hover:bg-red-500"
+          onClick={onClickClear}
+        >
           Clear
         </button>
       </div>
