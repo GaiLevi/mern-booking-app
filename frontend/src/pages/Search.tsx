@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { useSearchContext } from "../contexts/SearchContext";
 import * as apiClient from "../api-client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchResultsCard from "../components/SearchResultsCard";
 import Pagination from "../components/Pagination";
 import StarRatingFilter from "../components/StarRatingFilter";
@@ -17,6 +17,8 @@ const Search = () => {
   const [selectedFacilities, setSelectedFacilities] = useState<string[]>([]);
   const [selectedPrice, setSelectedPrice] = useState<number | undefined>();
   const [sortOption, setSortOption] = useState<string>("");
+
+  const [filterMenu, setFilterMenu] = useState<boolean>(false);
 
   const searchParams = {
     destination: search.destination,
@@ -67,29 +69,55 @@ const Search = () => {
     );
   };
 
+  function checkScreenSize(): void {
+    if (window.matchMedia("(min-width: 768px)").matches) {
+      setFilterMenu(true);
+    }
+  }
+
+  useEffect(() => {
+    // Add event listener for resize event
+    window.addEventListener("resize", checkScreenSize);
+
+    // Clean up the event listener when component unmounts
+    return () => {
+      window.removeEventListener("resize", checkScreenSize);
+    };
+  }, []);
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">
-      <div className="rounded-lg border border-slate-300 p-5 h-fit sticky top-10">
-        <div className="space-y-5">
+      <div className="rounded-lg border border-slate-300 p-5 h-fit lg:sticky top-10">
+        <div className="space-y-5 ">
           <h3 className="text-lg font-semibold corder-b border-slate-300 pb-5">
             Filter By:
+            <button
+              className={`text-blue-400 mx-2 lg:invisible }`}
+              onClick={() => setFilterMenu(!filterMenu)}
+            >
+              {filterMenu ? "close" : "open"}
+            </button>
           </h3>
-          <StarRatingFilter
-            selectedStars={selectedStars}
-            onChange={handleStarsChange}
-          />
-          <HotelTypesFilter
-            selectedHotelTypes={selectedHotelTypes}
-            onChange={handleHotelTypeChange}
-          />
-          <FacilitiesFilter
-            selectedFacilities={selectedFacilities}
-            onChange={handleFacilityChange}
-          />
-          <PriceFilter
-            selectedPrice={selectedPrice}
-            onChange={(value?: number) => setSelectedPrice(value)}
-          />
+          {filterMenu && (
+            <div className="space-y-5">
+              <StarRatingFilter
+                selectedStars={selectedStars}
+                onChange={handleStarsChange}
+              />
+              <HotelTypesFilter
+                selectedHotelTypes={selectedHotelTypes}
+                onChange={handleHotelTypeChange}
+              />
+              <FacilitiesFilter
+                selectedFacilities={selectedFacilities}
+                onChange={handleFacilityChange}
+              />
+              <PriceFilter
+                selectedPrice={selectedPrice}
+                onChange={(value?: number) => setSelectedPrice(value)}
+              />
+            </div>
+          )}
         </div>
       </div>
       <div className="flex flex-col gap-5">
