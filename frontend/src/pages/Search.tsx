@@ -76,10 +76,9 @@ const Search = () => {
   }
 
   useEffect(() => {
-    // Add event listener for resize event
+    setFilterMenu(true);
     window.addEventListener("resize", checkScreenSize);
 
-    // Clean up the event listener when component unmounts
     return () => {
       window.removeEventListener("resize", checkScreenSize);
     };

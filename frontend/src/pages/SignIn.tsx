@@ -36,7 +36,10 @@ const SignIn = () => {
     mutation.mutate(data);
   });
   return (
-    <form className="flex flex-col gap-5" onSubmit={onSubmit}>
+    <form
+      className="flex flex-col gap-5 md:max-w-[350px] lg:max-w-[500px] mx-auto "
+      onSubmit={onSubmit}
+    >
       <h2 className="text-x3l font-bold">Sign In</h2>
 
       <label className="text-grey-700 text-sm font-bold flex-1">
