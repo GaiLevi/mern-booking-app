@@ -39,13 +39,13 @@ const SearchResultsCard = ({ hotel }: Props) => {
           <div className="line-clamp-4">{hotel.description}</div>
         </div>
         <div className="grid grid-cols-2 items-end whitespace-nowrap">
-          <div className="flex gap-1 items-center">
+          <div className="grid grid-cols-2 gap-1 lg:flex lg:items-center">
             {hotel.facilities.slice(0, 3).map((facility) => (
-              <span className="bg-slate-300 p-2 rounded-lg font-bold text-xs whitespace-nowrap">
+              <span className="bg-slate-300 p-2 rounded-lg font-bold text-xs whitespace-nowrap mx-auto lg:mx-0">
                 {facility}
               </span>
             ))}
-            <span className="text-sm">
+            <span className="text-sm flex items-center justify-center">
               {hotel.facilities.length > 3 &&
                 `+${hotel.facilities.length - 3} more`}
             </span>
